@@ -13,7 +13,7 @@ A business inventory automation solution using n8n on Docker. This project strea
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/repuMonta.git
+git clone https://github.com/marko0925/repuMonta.git
 cd repuMonta
 ```
 
