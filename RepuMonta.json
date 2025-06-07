@@ -1,0 +1,856 @@
+{
+  "name": "RepuMonta",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2400,
+        -1520
+      ],
+      "id": "f61d31b9-24fb-4df9-89a6-4045f3830131",
+      "name": "Telegram Trigger",
+      "webhookId": "89b329d2-5a75-4632-a3dc-985152eeb9e2",
+      "credentials": {
+        "telegramApi": {
+          "id": "qEScH5NNJQ81JDf4",
+          "name": "api_key_telegram_prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1544,
+        -1440
+      ],
+      "id": "d55f1474-fc13-4176-84c9-152d778d7d03",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LtqsNc7YwjXAOuKM",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1420,
+        -1440
+      ],
+      "id": "71388bdc-6e40-4a43-985d-9cdb348498f8",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4",
+          "mode": "list",
+          "cachedResultName": "Montallantas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre__using_to_match_', ``, 'string') }}",
+            "fecha": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('fecha', ``, 'string') }}",
+            "ganancia": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ganancia', ``, 'string') }}",
+            "es_servicio": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('es_servicio', ``, 'string') }}",
+            "stock": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('stock', ``, 'string') }}",
+            "costo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('costo', ``, 'string') }}",
+            "costo unitario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('costo_unitario', ``, 'string') }}",
+            "rentabilidad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('rentabilidad', ``, 'string') }}",
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "stock",
+              "displayName": "stock",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "costo",
+              "displayName": "costo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "costo unitario",
+              "displayName": "costo unitario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ganancia",
+              "displayName": "ganancia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "rentabilidad",
+              "displayName": "rentabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "es_servicio",
+              "displayName": "es_servicio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -1200,
+        -780
+      ],
+      "id": "018e8cc5-688e-45d6-b660-b2b68a9d238a",
+      "name": "Modificar Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8gdHAG4wzFYYMlPm",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Obtiene la fecha actual",
+        "jsCode": "const now = new Date()\nreturn now.toLocaleDateString(\"es-CO\")"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.2,
+      "position": [
+        -1304,
+        -1440
+      ],
+      "id": "87fb30cd-7988-49a1-a8bf-611a79c4d6b5",
+      "name": "fecha"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4",
+          "mode": "list",
+          "cachedResultName": "Montallantas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -1184,
+        -1440
+      ],
+      "id": "19e8538d-94e0-4e2c-b9a3-856c8095bcc0",
+      "name": "get_rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8gdHAG4wzFYYMlPm",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        -1064,
+        -1440
+      ],
+      "id": "f3852a7a-36f0-42bf-bc02-1ca86af84986",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -420,
+        -1080
+      ],
+      "id": "624ccfd2-badf-47a0-9bdc-7fd9ff5f007c",
+      "name": "Telegram",
+      "webhookId": "d34dda3d-0bc9-43e9-8d05-783bc7b88b63",
+      "credentials": {
+        "telegramApi": {
+          "id": "qEScH5NNJQ81JDf4",
+          "name": "api_key_telegram_prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.message.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "servicio",
+              "description": "Todo lo relacionado a llevar un registro de servicios que se hicieron en el montallantas, Ejemplo: echar aire a llantas, mantenimiento de vehículos, ajustes, parchadas, etc.\nEjemplo:\n- Realice un servicio de aire y cobre 3000 pesos.\n- Se realizo un ajuste de cadena, se cobraron 34mil pesos."
+            },
+            {
+              "category": "venta",
+              "description": "Todo lo correspondiente a venta, compra y actualización de registros de productos del montallantas como aceites de motor, cauchos, repuestos, llantas, etc"
+            },
+            {
+              "category": "calculos",
+              "description": "Todo lo relacionado a realizar cálculos sobre los registros guardados, calcular sumas de rentabilidades, calcular porcentajes de ganancia, ejemplos: \n- Quiero saber cuánto fue la ganancia de este mes en aceites.\n- Me gustaría saber el 50% de la ganancia en servicios.\n- Quiero saber cuánto fue la rentabilidad de este mes en aceites"
+            }
+          ]
+        },
+        "options": {
+          "multiClass": false,
+          "fallback": "other"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -2120,
+        -1520
+      ],
+      "id": "0ad2a3f2-03f8-4a6c-a73c-88fcfbd5bbba",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "No me ha quedado claro. ¿Me puedes explicar mejor lo que quieres hacer?",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1620,
+        -780
+      ],
+      "id": "d805655d-53ca-4764-9793-1f6cd70c1ef7",
+      "name": "Telegram1",
+      "webhookId": "d4b433a8-a3c5-4360-bc62-17787ff6d524",
+      "credentials": {
+        "telegramApi": {
+          "id": "qEScH5NNJQ81JDf4",
+          "name": "api_key_telegram_prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Eres un experto en llevar un registro de los servicios que se realizan en un montallantas.\n\nAlgunos servicios son, por ejemplo, echar aire a las llantas, parchar llantas, mantenimiento, ajustes al vehículo, etc...\n\nPara guardar esta información usaras la herramienta \"mod_servicios\".\n\nPara hacer cálculos matemáticos usaras la herramienta \"Calculator\".\n\nLos datos que guardaras serán:\n-id: Un numero auto incrementable que comienza en 1.\n-Nombre: El nombre del servicio (aire, parchada, ajuste, etc...).\n-rentabilidad: El costo del servicio.\n-fecha: la fecha actual, la tomaras usando la herramienta \"fecha\".\n-es_servicio: guardaras \"si\"\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -1320,
+        -1660
+      ],
+      "id": "2cc9b9f1-c550-4c38-b2d5-48c3ab5c32e6",
+      "name": "agente_servicios"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Eres una experta en llevar la gestión de inventarios de un negocio, este negocio específicamente es un montallantas.\nVas a usar la herramienta \"Modificar Sheets\" para ir actualizando y guardando la información.\nPara consultar la información del inventario usa la herramienta llamada \"get_rows\".\n\nPara hacer cálculos debes usar la herramienta \"Calculator\".\n\nCuando se te diga que se compraron productos guardaras: \n-id: un numero auto incrementable que comienza en 1.\n-nombre: nombre del producto, ejemplo: llanta, cauchos, tornillos, etc.\n-costo: el total de lo que costo comprar los productos.\n-stock: la cantidad de productos.\n-costo unitario: No lo pedirás, tú lo calcularas dividiendo el \"costo\" en la cantidad de \"stock\" del momento.\n-fecha: No lo pedirás, tú la consultaras de la herramienta \"fecha\".\n-es_servicio: guardaras \"no\"\n\nCuando se te diga que se vendieron productos actualizaras:\n-stock: restaras las cantidades vendidas\n-ganancia: calcularas la ganancia (el valor al que se vendieron los productos)\n-rentabilidad: calcularas \"ganancia\" - \"costo\"\n\nCuando se te diga sobre actualizar o cambiar alguna información tomas el \"nombre\" para identificar el producto.\n\nNo pidas permiso para usar las herramientas, úsalas como mejor te parezca.\n\nEmpieza a guardar los datos a partir de la fila 2.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -1320,
+        -1060
+      ],
+      "id": "a7f202e4-f0a1-4651-b47a-51e144171f2f",
+      "name": "agente_inventario"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Text Classifier').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        -1660
+      ],
+      "id": "47d9ba5a-bf5b-4588-a435-d9d3eb959f06",
+      "name": "Telegram2",
+      "webhookId": "c111e835-a78c-4f94-9d40-ed9315d85a5c",
+      "credentials": {
+        "telegramApi": {
+          "id": "qEScH5NNJQ81JDf4",
+          "name": "api_key_telegram_prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4",
+          "mode": "list",
+          "cachedResultName": "Montallantas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GXlpe9zg1CAb1VI4Qst8AnTSjbk2UQ87soLbJmrrNf4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "rentabilidad": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('rentabilidad', ``, 'string') }}",
+            "fecha": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('fecha', ``, 'string') }}",
+            "es_servicio": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('es_servicio', ``, 'string') }}",
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "stock",
+              "displayName": "stock",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "costo",
+              "displayName": "costo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "costo unitario",
+              "displayName": "costo unitario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ganancia",
+              "displayName": "ganancia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "rentabilidad",
+              "displayName": "rentabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "es_servicio",
+              "displayName": "es_servicio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -940,
+        -1440
+      ],
+      "id": "2f84aef4-c54c-4210-a11e-4721e8c6fad5",
+      "name": "mod_servicios",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8gdHAG4wzFYYMlPm",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Telegram Trigger').item.json.message.text }}",
+        "options": {
+          "systemMessage": "Eres un experto matemático capaz de realizar cálculos sobre los registros contables de un montallantas.\n\nPara tener acceso a estos registros usaras la herramienta \"get_rows\".\n\nPara realizar los cálculos correspondientes que el cliente te diga usaras la herramienta \"Calculator\".\n\nPara conocer la fecha actual usaras la herramienta \"fecha\".\n\nUn par de ejemplos:\n- Quiero saber cuánto fue la ganancia de este mes en aceites.\n- Me gustaría saber el 50% de la ganancia en solo servicios.\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -1320,
+        -1260
+      ],
+      "id": "19466cc3-0355-47c0-9d08-a935c3416d50",
+      "name": "matematico"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        -1320
+      ],
+      "id": "e761d023-513b-490f-8681-7bfca8710347",
+      "name": "Telegram3",
+      "webhookId": "2b473bd8-0639-4686-af24-9d62acaa851f",
+      "credentials": {
+        "telegramApi": {
+          "id": "qEScH5NNJQ81JDf4",
+          "name": "api_key_telegram_prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\"output\":($input.first().json.output).replaceAll(\"*\",\"\")}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        -1000
+      ],
+      "id": "e2817f1d-f8d3-43d3-bcd4-a8084d24a9a8",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "agente_inventario",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "agente_servicios",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "matematico",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "agente_servicios",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "matematico",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "agente_inventario",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modificar Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "agente_inventario",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fecha": {
+      "ai_tool": [
+        [
+          {
+            "node": "agente_inventario",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "agente_servicios",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "matematico",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get_rows": {
+      "ai_tool": [
+        [
+          {
+            "node": "agente_inventario",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "agente_servicios",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "matematico",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "agente_inventario",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "agente_servicios",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "matematico",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "agente_servicios",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "agente_inventario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "matematico",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agente_inventario": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agente_servicios": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mod_servicios": {
+      "ai_tool": [
+        [
+          {
+            "node": "agente_servicios",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "matematico": {
+      "main": [
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "38b7120d-c3d8-4684-947e-86dd893e5dd1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6b2ced39326a1c82752b8080d1c882a5b90ca3ec689fa0668d9bc4d8078ee7d1"
+  },
+  "id": "kcSPrfGGQKmYXGzr",
+  "tags": [
+    {
+      "createdAt": "2025-05-27T03:09:26.405Z",
+      "updatedAt": "2025-05-27T03:09:26.405Z",
+      "id": "H73ZVLgkvtp54wRj",
+      "name": "madre"
+    },
+    {
+      "createdAt": "2025-05-27T03:09:31.486Z",
+      "updatedAt": "2025-05-27T03:09:31.486Z",
+      "id": "SljckCK23eLHzGXL",
+      "name": "inventario"
+    },
+    {
+      "createdAt": "2025-05-27T03:09:27.983Z",
+      "updatedAt": "2025-05-27T03:09:27.983Z",
+      "id": "erOxdH4hmWib288o",
+      "name": "negocio"
+    },
+    {
+      "createdAt": "2025-05-27T03:09:23.844Z",
+      "updatedAt": "2025-05-27T03:09:23.844Z",
+      "id": "lNjkhvrhvSUw97en",
+      "name": "montallantas"
+    }
+  ]
+}

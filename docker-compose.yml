@@ -4,9 +4,13 @@ services:
     restart: always
     ports:
       - "5678:5678"
-    environment: 
-      -N8N_PORT=5678
     volumes:
       - n8n_data:/home/node/.n8n
+      - .:/home/node/.n8n/custom_modules
+    environment:
+      # - N8N_WEBHOOK_URL=https://b0c1-2800-e2-1780-214-5741-e2c5-93c0-5c00.ngrok-free.app
+      # - WEBHOOK_URL=https://b0c1-2800-e2-1780-214-5741-e2c5-93c0-5c00.ngrok-free.app
+
+    
 volumes:
   n8n_data:
